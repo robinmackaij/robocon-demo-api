@@ -1,0 +1,41 @@
+version: 1
+disable_existing_loggers: False
+formatters:
+  uvicorn:
+    "()": uvicorn.logging.ColourizedFormatter
+    format: '%(asctime)s [uvicorn] %(levelprefix)s %(message)s'
+  access:
+    "()": uvicorn.logging.ColourizedFormatter
+    format: '%(asctime)s [access]  %(levelprefix)s %(message)s'
+  fastapi:
+    "()": uvicorn.logging.ColourizedFormatter
+    format: '%(asctime)s [fastapi] %(levelprefix)s %(message)s'
+handlers:
+  uvicorn:
+    formatter: uvicorn
+    class: logging.StreamHandler
+    stream: ext://sys.stderr
+  access:
+    formatter: access
+    class: logging.StreamHandler
+    stream: ext://sys.stdout
+  fastapi:
+    formatter: fastapi
+    class: logging.StreamHandler
+    stream: ext://sys.stdout
+loggers:
+  uvicorn:
+    level: INFO
+    handlers:
+      - uvicorn
+    propagate: yes
+  uvicorn.access:
+    level: INFO
+    handlers:
+      - access
+    propagate: no
+  fastapi:
+    level: INFO
+    handlers:
+      - fastapi
+    propagate: no

@@ -1,10 +1,14 @@
-# pylint: disable=missing-function-docstring, unused-argument
+# pylint: disable=missing-function-docstring, unused-argument, wrong-import-position
+# monkey-patch for 3.11 compatibility, see https://github.com/pyinvoke/invoke/issues/833
+import inspect
+if not hasattr(inspect, "getargspec"):
+    inspect.getargspec = inspect.getfullargspec  # type: ignore[attr-defined]
+
 import pathlib
 import subprocess
 from importlib.metadata import version
 
 from invoke import task
-
 
 ROOT = pathlib.Path(__file__).parent.resolve().as_posix()
 VERSION = version("robocon_demo_api")

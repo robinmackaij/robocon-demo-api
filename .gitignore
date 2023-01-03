@@ -7,3 +7,6 @@
 # Cached files
 .mypy_cache
 __pycache__
+
+# Local database
+workshop.db*

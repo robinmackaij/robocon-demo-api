@@ -1,0 +1,401 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/authors": {
+            "get": {
+                "summary": "Get Authors ",
+                "operationId": "get_authors__authors_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Get Authors  Authors Get",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Author"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Author ",
+                "operationId": "create_author__authors_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NewAuthor"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Author"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/authors/{author_id}": {
+            "get": {
+                "summary": "Get Author ",
+                "operationId": "get_author__authors__author_id__get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Author Id",
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "name": "author_id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Author"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Detail"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/poems": {
+            "get": {
+                "summary": "Get Poems ",
+                "operationId": "get_poems__poems_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Get Poems  Poems Get",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Poem"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Poem ",
+                "operationId": "create_poem__poems_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NewPoem"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Poem"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/poems/{poem_id}": {
+            "get": {
+                "summary": "Get Poem ",
+                "operationId": "get_poem__poems__poem_id__get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Poem Id",
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "name": "poem_id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Poem"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Detail"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Author": {
+                "title": "Author",
+                "required": [
+                    "name",
+                    "species"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "species": {
+                        "$ref": "#/components/schemas/Species"
+                    },
+                    "bio": {
+                        "title": "Bio",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                },
+                "description": "Author class"
+            },
+            "Detail": {
+                "title": "Detail",
+                "required": [
+                    "detail"
+                ],
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "string"
+                    }
+                },
+                "description": "Class for API message details."
+            },
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
+                    }
+                }
+            },
+            "NewAuthor": {
+                "title": "NewAuthor",
+                "required": [
+                    "name",
+                    "species"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "species": {
+                        "$ref": "#/components/schemas/Species"
+                    },
+                    "bio": {
+                        "title": "Bio",
+                        "type": "string"
+                    }
+                }
+            },
+            "NewPoem": {
+                "title": "NewPoem",
+                "required": [
+                    "title",
+                    "content",
+                    "author_id"
+                ],
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "title": "Title",
+                        "type": "string"
+                    },
+                    "content": {
+                        "title": "Content",
+                        "type": "string"
+                    },
+                    "author_id": {
+                        "title": "Author Id",
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                }
+            },
+            "Poem": {
+                "title": "Poem",
+                "required": [
+                    "title",
+                    "content",
+                    "author_id"
+                ],
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "title": "Title",
+                        "type": "string"
+                    },
+                    "content": {
+                        "title": "Content",
+                        "type": "string"
+                    },
+                    "author_id": {
+                        "title": "Author Id",
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                },
+                "description": "Poem class"
+            },
+            "Species": {
+                "title": "Species",
+                "enum": [
+                    "human",
+                    "robot",
+                    "unknown"
+                ],
+                "type": "string",
+                "description": "An enumeration."
+            },
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        }
+                    },
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

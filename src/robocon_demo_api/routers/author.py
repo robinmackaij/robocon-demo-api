@@ -10,19 +10,19 @@ from robocon_demo_api.storage.database import get_author, get_authors, store_aut
 author_router = APIRouter(prefix="/authors")
 
 
-@author_router.get("/", status_code=200, response_model=list[Author])
+@author_router.get("", status_code=200, response_model=list[Author])
 def get_authors_() -> list[Author]:
     return get_authors()
 
 
-@author_router.post("/", status_code=201, response_model=Author)
+@author_router.post("", status_code=201, response_model=Author)
 def create_author_(new_author: NewAuthor) -> Author:
     author = Author(**new_author.dict())
     store_author(author)
     return author
 
 
-@author_router.get("/{id}", status_code=200, response_model=Author, responses={404: {"model": Detail}})
+@author_router.get("/{author_id}", status_code=200, response_model=Author, responses={404: {"model": Detail}})
 def get_author_(author_id: UUID) -> Author:
     author = get_author(author_id=author_id)
     if not author:

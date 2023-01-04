@@ -5,8 +5,8 @@ from robocon_demo_api.models.base import Resource, Species
 
 class NewAuthor(BaseModel):
     name: str
-    bio: str | None = None
     species: Species
+    bio: str | None = None
 
 
 class Author(Resource, NewAuthor):

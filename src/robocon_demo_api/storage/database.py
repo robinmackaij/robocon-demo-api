@@ -30,7 +30,7 @@ def store_poem(poem: Poem) -> None:
         f"SELECT * FROM authors WHERE id='{poem.author_id}'"
     )
     if result.fetchone() is None:
-        raise ValueError("NotFound", f"Author with author_id {poem.author_id} does not exist.")
+        raise ValueError("AuthorNotFound", f"Author with author_id {poem.author_id} does not exist.")
 
     cursor.execute(f"""
         INSERT INTO poems VALUES
@@ -50,7 +50,6 @@ def get_poems() -> list[Poem]:
 def get_poem(poem_id: UUID) -> Poem | None:
     connection = sqlite3.connect("workshop.db")
     cursor = connection.cursor()
-    print(poem_id)
     result = cursor.execute(f"SELECT * FROM poems WHERE id = '{poem_id}'")
     result_list = result.fetchall()
     if not result_list:
@@ -59,7 +58,6 @@ def get_poem(poem_id: UUID) -> Poem | None:
 
 
 def get_poem_from_tuple(poem_tuple: tuple[str, str, str, str]) -> Poem:
-    print(poem_tuple)
     return Poem(
         id=poem_tuple[0],
         title=poem_tuple[1],
@@ -97,7 +95,6 @@ def get_author(author_id: UUID) -> Author | None:
 
 
 def get_author_from_tuple(author_tuple: tuple[str, str, str, str]) -> Author:
-    print(author_tuple)
     return Author(
         id=author_tuple[0],
         name=author_tuple[1],

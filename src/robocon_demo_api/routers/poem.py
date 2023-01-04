@@ -10,19 +10,19 @@ from robocon_demo_api.storage.database import get_poem, get_poems, store_poem
 poem_router = APIRouter(prefix="/poems")
 
 
-@poem_router.get("/", status_code=200, response_model=list[Poem])
+@poem_router.get("", status_code=200, response_model=list[Poem])
 def get_poems_() -> list[Poem]:
     return get_poems()
 
 
-@poem_router.post("/", status_code=201, response_model=Poem)
+@poem_router.post("", status_code=201, response_model=Poem, responses={422: {"model": Detail}})
 def create_poem_(new_poem: NewPoem) -> Poem:
     poem = Poem(**new_poem.dict())
     try:
         store_poem(poem)
     except ValueError as exception:
-        if exception.args[0] == "NotFound":
-            raise HTTPException(status_code=404, detail=exception.args[1]) from None
+        if exception.args[0] == "AuthorNotFound":
+            raise HTTPException(status_code=422, detail=exception.args[1]) from None
     return poem
 
 

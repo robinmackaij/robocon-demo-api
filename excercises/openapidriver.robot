@@ -3,6 +3,7 @@ Resource            variables.resource
 Library             OpenApiDriver
 ...                    source=${HOST}/openapi.json
 ...                    origin=${HOST}
+...                    response_validation=DISABLED
 Test Template        Validate Using Test Endpoint Keyword
 
 

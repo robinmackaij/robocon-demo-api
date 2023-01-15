@@ -4,38 +4,44 @@ from uuid import UUID, uuid4
 from robocon_demo_api.models.author import AuthorResource
 from robocon_demo_api.models.poem import Poem
 
-
 CONNECTION = sqlite3.connect("workshop.db")
 CURSOR = CONNECTION.cursor()
 
 
 CURSOR.execute("CREATE TABLE IF NOT EXISTS authors(id PRIMARY KEY, name, bio, species)")
-CURSOR.execute("CREATE TABLE IF NOT EXISTS poems(id PRIMARY KEY, title, content, author_id, FOREIGN KEY(author_id) REFERENCES authors(id))")
+CURSOR.execute(
+    "CREATE TABLE IF NOT EXISTS poems(id PRIMARY KEY, title, content, author_id, FOREIGN KEY(author_id) REFERENCES authors(id))"
+)
 
 default = CURSOR.execute(
     "SELECT * FROM authors WHERE name='unknown author' AND species='unknown'"
 )
 if default.fetchone() is None:
-    CURSOR.execute(f"""
+    CURSOR.execute(
+        f"""
         INSERT INTO authors VALUES
             ('{uuid4()}', 'unknown author', ?, 'unknown')
-    """, (None,))
+    """,
+        (None,),
+    )
     CONNECTION.commit()
 
 
 def store_poem(poem: Poem) -> None:
     connection = sqlite3.connect("workshop.db")
     cursor = connection.cursor()
-    result = cursor.execute(
-        f"SELECT * FROM authors WHERE id='{poem.author_id}'"
-    )
+    result = cursor.execute(f"SELECT * FROM authors WHERE id='{poem.author_id}'")
     if result.fetchone() is None:
-        raise ValueError("AuthorNotFound", f"Author with author_id {poem.author_id} does not exist.")
+        raise ValueError(
+            "AuthorNotFound", f"Author with author_id {poem.author_id} does not exist."
+        )
 
-    cursor.execute(f"""
+    cursor.execute(
+        f"""
         INSERT INTO poems VALUES
             ('{poem.id}', '{poem.title}', '{poem.content}', '{poem.author_id}')
-    """)
+    """
+    )
     connection.commit()
 
 
@@ -79,10 +85,12 @@ def delete_poem(poem_id: UUID) -> None:
 def store_author(author: AuthorResource) -> None:
     connection = sqlite3.connect("workshop.db")
     cursor = connection.cursor()
-    cursor.execute(f"""
+    cursor.execute(
+        f"""
         INSERT INTO authors VALUES
             ('{author.id}', '{author.name}', '{author.bio}', '{author.species.value}')
-    """)
+    """
+    )
     connection.commit()
 
 

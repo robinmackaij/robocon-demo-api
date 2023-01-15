@@ -16,4 +16,5 @@ class Species(str, Enum):
 
 class Detail(BaseModel):
     """Class for API message details."""
+
     detail: str

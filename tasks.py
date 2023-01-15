@@ -1,6 +1,7 @@
 # pylint: disable=missing-function-docstring, unused-argument, wrong-import-position
 # monkey-patch for 3.11 compatibility, see https://github.com/pyinvoke/invoke/issues/833
 import inspect
+
 if not hasattr(inspect, "getargspec"):
     inspect.getargspec = inspect.getfullargspec  # type: ignore[attr-defined]
 
@@ -48,7 +49,7 @@ def run_tests(context):
 @task
 def lint(context):
     subprocess.run(f"mypy {ROOT}", shell=True, check=False)
-    subprocess.run(f"pylint {ROOT}", shell=True, check=False)
+    subprocess.run(f"pylint {ROOT}/src/robocon_demo_api", shell=True, check=False)
 
 
 @task

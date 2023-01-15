@@ -32,6 +32,20 @@ def start_api(context):
 
 
 @task
+def run_tests(context):
+    cmd = [
+        "python",
+        "-m",
+        "robot",
+        f"--variable=ROOT:{ROOT}",
+        f"--outputdir={ROOT}/excercises/logs",
+        "--loglevel=TRACE:TRACE",
+        f"{ROOT}/excercises",
+    ]
+    subprocess.run(" ".join(cmd), shell=True, check=False)
+
+
+@task
 def lint(context):
     subprocess.run(f"mypy {ROOT}", shell=True, check=False)
     subprocess.run(f"pylint {ROOT}", shell=True, check=False)

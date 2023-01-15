@@ -1,7 +1,7 @@
 import sqlite3
 from uuid import UUID, uuid4
 
-from robocon_demo_api.models.author import Author
+from robocon_demo_api.models.author import AuthorResource
 from robocon_demo_api.models.poem import Poem
 
 
@@ -39,10 +39,13 @@ def store_poem(poem: Poem) -> None:
     connection.commit()
 
 
-def get_poems() -> list[Poem]:
+def get_poems(author_id: UUID | None = None) -> list[Poem]:
     connection = sqlite3.connect("workshop.db")
     cursor = connection.cursor()
-    result = cursor.execute("SELECT * FROM poems")
+    if author_id:
+        result = cursor.execute(f"SELECT * FROM poems WHERE author_id='{author_id}'")
+    else:
+        result = cursor.execute("SELECT * FROM poems")
     result_list = result.fetchall()
     return [get_poem_from_tuple(poem_data) for poem_data in result_list]
 
@@ -66,7 +69,14 @@ def get_poem_from_tuple(poem_tuple: tuple[str, str, str, str]) -> Poem:
     )
 
 
-def store_author(author: Author) -> None:
+def delete_poem(poem_id: UUID) -> None:
+    connection = sqlite3.connect("workshop.db")
+    cursor = connection.cursor()
+    cursor.execute(f"DELETE FROM poems WHERE id = '{poem_id}'")
+    connection.commit()
+
+
+def store_author(author: AuthorResource) -> None:
     connection = sqlite3.connect("workshop.db")
     cursor = connection.cursor()
     cursor.execute(f"""
@@ -76,7 +86,7 @@ def store_author(author: Author) -> None:
     connection.commit()
 
 
-def get_authors() -> list[Author]:
+def get_authors() -> list[AuthorResource]:
     connection = sqlite3.connect("workshop.db")
     cursor = connection.cursor()
     result = cursor.execute("SELECT * FROM authors")
@@ -84,7 +94,7 @@ def get_authors() -> list[Author]:
     return [get_author_from_tuple(author_data) for author_data in result_list]
 
 
-def get_author(author_id: UUID) -> Author | None:
+def get_author(author_id: UUID) -> AuthorResource | None:
     connection = sqlite3.connect("workshop.db")
     cursor = connection.cursor()
     result = cursor.execute(f"SELECT * FROM authors WHERE id = '{author_id}'")
@@ -94,10 +104,17 @@ def get_author(author_id: UUID) -> Author | None:
     return get_author_from_tuple(result_list[0])
 
 
-def get_author_from_tuple(author_tuple: tuple[str, str, str, str]) -> Author:
-    return Author(
+def get_author_from_tuple(author_tuple: tuple[str, str, str, str]) -> AuthorResource:
+    return AuthorResource(
         id=author_tuple[0],
         name=author_tuple[1],
         bio=author_tuple[2],
         species=author_tuple[3],
     )
+
+
+def delete_author(author_id: UUID) -> None:
+    connection = sqlite3.connect("workshop.db")
+    cursor = connection.cursor()
+    cursor.execute(f"DELETE FROM authors WHERE id = '{author_id}'")
+    connection.commit()

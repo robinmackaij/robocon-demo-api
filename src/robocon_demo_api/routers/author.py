@@ -1,6 +1,8 @@
+import pathlib
 from uuid import UUID
 
-from fastapi import APIRouter, HTTPException, Path, Request, Response
+from fastapi import APIRouter, HTTPException, Path, Request, Response, UploadFile
+from fastapi.responses import FileResponse
 
 from robocon_demo_api.config import CONFIG
 from robocon_demo_api.models.author import Author, AuthorResource
@@ -45,6 +47,32 @@ def get_author_(
     return author
 
 
+@author_router.get(
+    "/{author_id}/portraits",
+    status_code=200,
+    responses={404: {"model": Detail}},
+)
+def get_author_portrait_(
+    author_id: UUID,
+) -> FileResponse:
+    author = get_author(author_id=author_id)
+    if not author:
+        raise HTTPException(
+            status_code=404, detail=f"No author with id {author_id} found."
+        ) from None
+    portrait_folder = pathlib.Path(".")
+    portrait_paths = [
+        path
+        for path in portrait_folder.iterdir()
+        if path.is_file() and path.name.startswith(f"{author_id}_portrait")
+    ]
+    if not portrait_paths:
+        raise HTTPException(
+            status_code=404, detail=f"No portrait for author with id {author_id} found."
+        ) from None
+    return FileResponse(portrait_paths[0])
+
+
 @author_router.delete(
     "/{author_id}",
     status_code=204,
@@ -65,3 +93,20 @@ def delete_author_(author_id: UUID, request: Request) -> None:
             detail=f"Cannot delete author with id {author_id}: There are poems associated with this author.",
         )
     delete_author(author_id=author_id)
+
+
+@author_router.post(
+    "{author_id}/upload_portait",
+    status_code=204,
+    response_class=Response,
+    responses={404: {"model": Detail}},
+)
+def post_portait(author_id: UUID, uploaded_file: UploadFile):
+    if not get_author(author_id=author_id):
+        raise HTTPException(
+            status_code=404, detail=f"Author with id {author_id} not found."
+        ) from None
+    content_type = uploaded_file.content_type
+    extension = content_type.rsplit("/", maxsplit=1)[-1]
+    with open(f"{author_id}_portrait.{extension}", mode="wb+") as portrait_file:
+        portrait_file.write(uploaded_file.file.read())

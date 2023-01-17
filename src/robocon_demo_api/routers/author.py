@@ -110,7 +110,7 @@ def delete_author_(author_id: UUID, request: Request) -> None:
 
 
 @author_router.post(
-    "{author_id}/upload_portait",
+    "/{author_id}/upload_portait",
     status_code=204,
     response_class=Response,
     responses={403: {"model": Detail}, 404: {"model": Detail}},

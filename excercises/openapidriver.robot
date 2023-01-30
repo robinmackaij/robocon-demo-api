@@ -3,7 +3,10 @@ Resource            variables.resource
 Library             OpenApiDriver
 ...                    source=${HOST}/openapi.json
 ...                    origin=${HOST}
+...                    ignored_endpoints=${IGNORED_PATHS}
 ...                    response_validation=DISABLED
+...                    mappings_path=${ROOT}/excercises/mappings.py
+...                    extra_headers=${EXTRA_HEADERS}
 Test Template        Validate Using Test Endpoint Keyword
 
 
@@ -19,4 +22,3 @@ Validate Using Test Endpoint Keyword
         Test Endpoint
         ...    endpoint=${endpoint}    method=${method}    status_code=${status_code}
     END
-

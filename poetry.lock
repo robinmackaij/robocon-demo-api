@@ -23,14 +23,14 @@ trio = ["trio (>=0.16,<0.22)"]
 
 [[package]]
 name = "astroid"
-version = "2.13.3"
+version = "2.14.1"
 description = "An abstract syntax tree for Python with inference support."
 category = "dev"
 optional = false
 python-versions = ">=3.7.2"
 files = [
-    {file = "astroid-2.13.3-py3-none-any.whl", hash = "sha256:14c1603c41cc61aae731cad1884a073c4645e26f126d13ac8346113c95577f3b"},
-    {file = "astroid-2.13.3.tar.gz", hash = "sha256:6afc22718a48a689ca24a97981ad377ba7fb78c133f40335dfd16772f29bcfb1"},
+    {file = "astroid-2.14.1-py3-none-any.whl", hash = "sha256:23c718921acab5f08cbbbe9293967f1f8fec40c336d19cd75dc12a9ea31d2eb2"},
+    {file = "astroid-2.14.1.tar.gz", hash = "sha256:bd1aa4f9915c98e8aaebcd4e71930154d4e8c9aaf05d35ac0a63d1956091ae3f"},
 ]
 
 [package.dependencies]
@@ -559,14 +559,14 @@ format-nongpl = ["fqdn", "idna", "isoduration", "jsonpointer (>1.13)", "rfc3339-
 
 [[package]]
 name = "jsonschema-spec"
-version = "0.1.2"
+version = "0.1.3"
 description = "JSONSchema Spec with object-oriented paths"
 category = "main"
 optional = false
 python-versions = ">=3.7.0,<4.0.0"
 files = [
-    {file = "jsonschema-spec-0.1.2.tar.gz", hash = "sha256:780a22d517cdc857d9714a80d8349c546945063f20853ea32ba7f85bc643ec7d"},
-    {file = "jsonschema_spec-0.1.2-py3-none-any.whl", hash = "sha256:1e525177574c23ae0f55cd62382632a083a0339928f0ca846a975a4da9851cec"},
+    {file = "jsonschema_spec-0.1.3-py3-none-any.whl", hash = "sha256:b3cde007ad65c2e631e2f8653cf187124a2c714d02d9fafbab68ad64bf5745d6"},
+    {file = "jsonschema_spec-0.1.3.tar.gz", hash = "sha256:8d8db7c255e524fab1016a952a9143e5b6e3c074f4ed25d1878f8e97806caec0"},
 ]
 
 [package.dependencies]
@@ -836,32 +836,30 @@ requests = ["requests"]
 
 [[package]]
 name = "openapi-schema-validator"
-version = "0.4.2"
+version = "0.4.3"
 description = "OpenAPI schema validation for Python"
 category = "main"
 optional = false
 python-versions = ">=3.7.0,<4.0.0"
 files = [
-    {file = "openapi_schema_validator-0.4.2-py3-none-any.whl", hash = "sha256:a7978f231244e167819607e15f821546a381e469577de47428cb3fe5af59c737"},
-    {file = "openapi_schema_validator-0.4.2.tar.gz", hash = "sha256:6613714d6a9aee10b4268c47ba85b5b0b3ce87ac0e51e6b290e837994a6c61b7"},
+    {file = "openapi_schema_validator-0.4.3-py3-none-any.whl", hash = "sha256:f1eff2a7936546a3ce62b88a17d09de93c9bd229cbc43cb696c988a61a382548"},
+    {file = "openapi_schema_validator-0.4.3.tar.gz", hash = "sha256:6940dba9f4906c97078fea6fd9d5a3a3384207db368c4e32f6af6abd7c5c560b"},
 ]
 
 [package.dependencies]
 jsonschema = ">=4.0.0,<5.0.0"
-
-[package.extras]
-rfc3339-validator = ["rfc3339-validator"]
+rfc3339-validator = "*"
 
 [[package]]
 name = "openapi-spec-validator"
-version = "0.5.2"
+version = "0.5.4"
 description = "OpenAPI 2.0 (aka Swagger) and OpenAPI 3 spec validator"
 category = "main"
 optional = false
 python-versions = ">=3.7.0,<4.0.0"
 files = [
-    {file = "openapi_spec_validator-0.5.2-py3-none-any.whl", hash = "sha256:1f8db08ecbcf4ec8c558d65b65b3b7b428f81da6642f2f163e992ae3e17b229c"},
-    {file = "openapi_spec_validator-0.5.2.tar.gz", hash = "sha256:ebed7f1c567780859402ad64b128e17f519d15f605f1b41d1e9a4a7a1690be07"},
+    {file = "openapi_spec_validator-0.5.4-py3-none-any.whl", hash = "sha256:96be4258fdccc89d3da094738e19d56b94956914b93a22de795b9dd220cb4c7c"},
+    {file = "openapi_spec_validator-0.5.4.tar.gz", hash = "sha256:68654e81cc56c71392dba31bf55d11e1c03c99458bebcb0018959a7134e104da"},
 ]
 
 [package.dependencies]
@@ -1049,18 +1047,18 @@ plugins = ["importlib-metadata"]
 
 [[package]]
 name = "pylint"
-version = "2.15.10"
+version = "2.16.1"
 description = "python code static checker"
 category = "dev"
 optional = false
 python-versions = ">=3.7.2"
 files = [
-    {file = "pylint-2.15.10-py3-none-any.whl", hash = "sha256:9df0d07e8948a1c3ffa3b6e2d7e6e63d9fb457c5da5b961ed63106594780cc7e"},
-    {file = "pylint-2.15.10.tar.gz", hash = "sha256:b3dc5ef7d33858f297ac0d06cc73862f01e4f2e74025ec3eff347ce0bc60baf5"},
+    {file = "pylint-2.16.1-py3-none-any.whl", hash = "sha256:bad9d7c36037f6043a1e848a43004dfd5ea5ceb05815d713ba56ca4503a9fe37"},
+    {file = "pylint-2.16.1.tar.gz", hash = "sha256:ffe7fa536bb38ba35006a7c8a6d2efbfdd3d95bbf21199cad31f76b1c50aaf30"},
 ]
 
 [package.dependencies]
-astroid = ">=2.12.13,<=2.14.0-dev0"
+astroid = ">=2.14.1,<=2.16.0-dev0"
 colorama = {version = ">=0.4.5", markers = "sys_platform == \"win32\""}
 dill = [
     {version = ">=0.2", markers = "python_version < \"3.11\""},
@@ -1281,6 +1279,21 @@ robotframework = "*"
 tzlocal = "*"
 
 [[package]]
+name = "rfc3339-validator"
+version = "0.1.4"
+description = "A pure python RFC3339 validator"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+files = [
+    {file = "rfc3339_validator-0.1.4-py2.py3-none-any.whl", hash = "sha256:24f6ec1eda14ef823da9e36ec7113124b39c04d50a4d3d3a3c2859577e7791fa"},
+    {file = "rfc3339_validator-0.1.4.tar.gz", hash = "sha256:138a2abdf93304ad60530167e51d2dfb9549521a836871b88d7f4695d0022f6b"},
+]
+
+[package.dependencies]
+six = "*"
+
+[[package]]
 name = "rfc3987"
 version = "1.3.8"
 description = "Parsing and validation of URIs (RFC 3986) and IRIs (RFC 3987)"
@@ -1394,14 +1407,14 @@ xls = ["openpyxl", "pandas", "xlrd (>=1.2.0)"]
 
 [[package]]
 name = "robotframework-openapi-libcore"
-version = "1.8.0"
+version = "1.8.1"
 description = "A Robot Framework library to facilitate library development for OpenAPI / Swagger APIs."
 category = "main"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "robotframework_openapi_libcore-1.8.0-py3-none-any.whl", hash = "sha256:659ccf4950f6a15e3162c47f7f004c700ccd39c5a726ad153ed5d5729509a9ce"},
-    {file = "robotframework_openapi_libcore-1.8.0.tar.gz", hash = "sha256:f1750a55926ccff701b5c9446ba2dcfa86465f7dc509c5e0c422adf53ff7f9d1"},
+    {file = "robotframework_openapi_libcore-1.8.1-py3-none-any.whl", hash = "sha256:0cd117b49aa1ef19a40787db7c82334a6b2b062e1c47e2e607b06ac4d5219d0b"},
+    {file = "robotframework_openapi_libcore-1.8.1.tar.gz", hash = "sha256:42b6bcc4dc53f53312d1d5e09a8d839c9f96f19b841de1b96dc197f661e6d1aa"},
 ]
 
 [package.dependencies]
@@ -1414,14 +1427,14 @@ rstr = ">=3,<4"
 
 [[package]]
 name = "robotframework-openapidriver"
-version = "3.6.0"
+version = "3.6.1"
 description = "A library for contract-testing OpenAPI / Swagger APIs."
 category = "main"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "robotframework_openapidriver-3.6.0-py3-none-any.whl", hash = "sha256:9f933f58021c2860185eea2390b72cf49426bd45c64afe63a839b3777a1c0706"},
-    {file = "robotframework_openapidriver-3.6.0.tar.gz", hash = "sha256:9b2cf58b7e0460a0a7f5b79cda8086d33a5b4dd75d8d4d694e5ee5e72b8f425a"},
+    {file = "robotframework_openapidriver-3.6.1-py3-none-any.whl", hash = "sha256:5dbe5d0e7c651aa7a45b251a4de118e8c7538ff2e46cb4091bb46f65a659d741"},
+    {file = "robotframework_openapidriver-3.6.1.tar.gz", hash = "sha256:6d9ed8ce7186eeb9a51ec13e02c3c950bd1b1b8d93b7d5693cf8cac68db245a3"},
 ]
 
 [package.dependencies]
@@ -1858,4 +1871,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "ba74e6bed53dad194bcebc654a210d8134b5d60d02954b72a8234cc88d168896"
+content-hash = "737c73756df3221b71d8ae404293d3311238b87200b188d4ffec61b9bb900a09"

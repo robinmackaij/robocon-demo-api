@@ -13,6 +13,7 @@ Test Template        Validate Using Test Endpoint Keyword
 *** Test Cases ***
 Test Endpoint for ${method} on ${endpoint} where ${status_code} is expected
 
+
 *** Keywords ***
 Validate Using Test Endpoint Keyword
     [Arguments]    ${endpoint}    ${method}    ${status_code}

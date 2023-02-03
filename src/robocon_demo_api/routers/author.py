@@ -77,7 +77,7 @@ def get_author_portrait_(
     "/{author_id}",
     status_code=204,
     response_class=Response,
-    responses={404: {"model": Detail}},
+    responses={403: {"model": Detail}, 404: {"model": Detail}},
 )
 def delete_author_(author_id: UUID, request: Request) -> None:
     api_key = request.headers.get("api-key", "")
@@ -132,7 +132,7 @@ def post_portait(
             status_code=403,
             detail=(
                 f"A portrait for author with id {author_id} is already present. To "
-                "replace the existing portrait, use the `force` parameter."
+                "replace the existing portrait, use the `replace` parameter."
             ),
         ) from None
     content_type = uploaded_file.content_type

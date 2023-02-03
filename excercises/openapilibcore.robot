@@ -23,3 +23,11 @@ Update Generated Post Data With Specific Value
     Log    ${dict}
     ${updated_dict}=    Set To Dictionary    ${dict}    name=our test user name
     Log    ${updated_dict}
+    ${url}=    Get Valid Url    endpoint=/authors    method=post
+    ${response}=    Authorized Request
+    ...    url=${url}
+    ...    method=post
+    ...    params=${author_requestdata.params}
+    ...    headers=${author_requestdata.headers}
+    ...    json_data=${updated_dict}
+    Should Be Equal As Strings    ${response.json()}[name]    our test user name

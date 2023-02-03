@@ -31,12 +31,14 @@ robotframework-openapidriver = "^3.5.1"
 python-multipart = "^0.0.5"
 
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 black = "*"
 isort = "*"
 pylint = "*"
 mypy = "*"
 invoke = "*"
+robotframework-tidy = "^3.3.3"
+robotframework-robocop = "^2.7.0"
 coverage = {version = "^5.5", extras = ["toml"]}
 
 [build-system]

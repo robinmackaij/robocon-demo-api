@@ -19,7 +19,7 @@ Update Generated Post Data With Specific Value
     ${author_dto}=    Set Variable    ${author_requestdata.dto}
     ${author_name}=    Set Variable    ${author_dto.name}
     Log    ${author_name}
-    ${dict}=    Set Variable    ${author_dto.__dict__}
+    ${dict}=    Set Variable    ${author_dto.as_dict()}
     Log    ${dict}
     ${updated_dict}=    Set To Dictionary    ${dict}    name=our test user name
     Log    ${updated_dict}

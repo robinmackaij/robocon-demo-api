@@ -12,6 +12,9 @@ from OpenApiLibCore import (
 )
 
 
+ID_MAPPING = {}
+
+
 class AuthorDto(Dto):
     @staticmethod
     def get_relations() -> list[Relation]:

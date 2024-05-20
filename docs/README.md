@@ -1,8 +1,30 @@
-## Preparing your system to run Python-based tests
+## Preparing your system for this workshop
 
+### Option 1 (recommended): VS Code devcontainer
+> Note: this requires Docker to be installed / running on your system
+
+Download and install VS Code: https://code.visualstudio.com/download
+
+After installing, open VS Code and clone this repo:
+* press `ctrl + shift + P`
+* type `git clone` and select the `Git: Clone` command
+* paste the url for this repo in the prompt bar: https://github.com/robinmackaij/robocon-demo-api
+
+Once the repo has been cloned, you can open it when prompted.
+After the repo opens, a dialog should pop up in the lower right corner asking if you
+want to install the recommended Extensions for this repo.
+After installing the recommended Extensions, you should be prompted again, this time
+with the question if you want to open the repo in a devcontainer.
+If this is not the case, press `ctrl + shift + P` and type `reopen container` which
+should find the command to build the devcontainer and open the repo in the container.
+
+Once building the container has finished, you should be able to proceed to the section
+`Running the API server using poetry and invoke` to check if everything works as expected.
+
+### Option 2: Python + poetry in a local virtual environment
 This repo uses [poetry](https://python-poetry.org/) for Python environment isolation and package management.
 Before poetry can be installed, Python must be installed. The minimum version to be installed can be found in the `pyproject.toml` file.
-For this workshop Python 3.10 or 3.11 is required.
+For this workshop Python 3.10 or higher is required.
 The appropriate download for your OS can be found [here](https://www.python.org/downloads/).
 
 After installing Python, poetry can be installed. For OSX/ Linux / bashonwindows the command is:
@@ -32,6 +54,11 @@ Now that poetry is set up, the project's Python dependencies can be installed:
 ```
 poetry install
 ```
+
+### Optional (recommended): VS Code user settings and launch configuration
+In the repo there is a `.vscode` folder with in it 2 `example` files.
+Copy both these files and rename them to `launch.json` and `settings.json` to have a
+default set of launch / debug configurations and base settings.
 
 ## Running the API server using poetry and invoke
 

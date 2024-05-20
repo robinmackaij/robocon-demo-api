@@ -20,7 +20,7 @@ Post Portrait
     ${authors_list}=    Set Variable    ${response.json()}
     ${author_id}=    Set Variable    ${authors_list[0]}[id]
 
-    ${portrait}=    Get File For Streaming Upload    path=${ROOT}/excercises/rf_logo.png
+    ${portrait}=    Get File For Streaming Upload    path=${ROOT}/excercises/rf_log.png
     ${files}=   Create Dictionary   uploaded_file=${portrait}   type=image/png
     ${query_params}=    Create Dictionary    replace=${TRUE}
     ${response}=    POST

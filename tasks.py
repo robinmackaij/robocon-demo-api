@@ -1,19 +1,17 @@
 # pylint: disable=missing-function-docstring, unused-argument, wrong-import-position
-# monkey-patch for 3.11 compatibility, see https://github.com/pyinvoke/invoke/issues/833
-import inspect
-
 import pathlib
 import subprocess
 from importlib.metadata import version
 
-from invoke import task
+from invoke.context import Context
+from invoke.tasks import task
 
 ROOT = pathlib.Path(__file__).parent.resolve().as_posix()
 VERSION = version("robocon_demo_api")
 
 
 @task
-def start_api(context):
+def start_api(context: Context) -> None:
     cmd = [
         "python",
         "-m",
@@ -30,7 +28,7 @@ def start_api(context):
 
 
 @task
-def run_tests(context):
+def run_tests(context: Context) -> None:
     cmd = [
         "python",
         "-m",
@@ -44,14 +42,37 @@ def run_tests(context):
 
 
 @task
-def lint(context):
+def exercise_log(context: Context) -> None:
+    """
+    Exercise: Examining the log to determine what causes the test to fail.
+
+    Running this task (after starting the API server using the `start-api` task) should
+    result in a failed test run.
+
+    Open the generated log file (ctrl+click on the link in the terminal should work) and
+    examine it to find the cause of the test failure.
+    """
+    cmd = [
+        "python",
+        "-m",
+        "robot",
+        f"--variable=ROOT:{ROOT}",
+        f"--outputdir={ROOT}/logs",
+        "--loglevel=TRACE:TRACE",
+        f"{ROOT}/excercises/requestslibrary.robot",
+    ]
+    subprocess.run(" ".join(cmd), shell=True, check=False)
+
+
+@task
+def lint(context: Context) -> None:
     subprocess.run(f"mypy {ROOT}", shell=True, check=False)
     subprocess.run(f"pylint {ROOT}/src/robocon_demo_api", shell=True, check=False)
     subprocess.run(f"robocop {ROOT}", shell=True, check=False)
 
 
 @task
-def format_code(context):
+def format_code(context: Context) -> None:
     subprocess.run(f"black {ROOT}", shell=True, check=False)
     subprocess.run(f"isort {ROOT}", shell=True, check=False)
     subprocess.run(f"robotidy {ROOT}", shell=True, check=False)

@@ -4,17 +4,16 @@ from robocon_demo_api.models.base import Resource, Species
 
 
 class Author(BaseModel):
-    name: str = Field(title="The author's name", format="name")
+    name: str = Field(title="The author's name", json_schema_extra={"format": "name"})
     species: Species
     bio: str | None = Field(
         default=None,
         title="A short description of the life and work of the author.",
         max_length=400,
-        format="text",
     )
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "name": "HAL",
                 "species": "robot",

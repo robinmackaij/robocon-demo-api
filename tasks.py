@@ -58,8 +58,8 @@ def exercise_log(context: Context) -> None:
         "robot",
         f"--variable=ROOT:{ROOT}",
         f"--outputdir={ROOT}/logs",
-        "--loglevel=TRACE:TRACE",
-        f"{ROOT}/excercises/requestslibrary.robot",
+        "--loglevel=TRACE:INFO",
+        f"{ROOT}/intro_robotframework",
     ]
     subprocess.run(" ".join(cmd), shell=True, check=False)
 

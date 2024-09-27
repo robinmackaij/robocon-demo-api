@@ -1,0 +1,6 @@
+output-dir = "/logs"
+log-level = "TRACE:INFO"
+
+[variables]
+ROOT = "/workspaces/robocon-demo-api"
+HOST = "http://127.0.0.1:8000"

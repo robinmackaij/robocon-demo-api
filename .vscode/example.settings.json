@@ -1,5 +1,18 @@
 {
-    "robotcode.robot.variables": {
-        "ROOT": "/workspaces/robotframework-demo-api"
-    }
+    "debugpy.debugJustMyCode": false,
+    "robotcode.debug.attachPython": true,
+    "robotcode.workspace.excludePatterns": [
+        "**/.git/",
+        "**/.hatch/",
+        "**/.venv/",
+        "**/node_modules/",
+        "**/.pytest_cache/",
+        "**/__pycache__/",
+        "**/.mypy_cache/",
+        "**/.robotcode_cache/",
+        "src/robocon_demo_api/"
+    ],
+    "robotcode.analysis.findUnusedReferences": false,
+    "robotcode.analysis.progressMode": "detailed",
+    "robotcode.analysis.diagnosticMode": "openFilesOnly"
 }

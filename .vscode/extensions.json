@@ -4,6 +4,9 @@
         "ms-python.python",
         "ms-python.vscode-pylance",
         "charliermarsh.ruff",
-        "d-biehl.robotcode"
+        "Gruntfuggly.todo-tree",
+        "tamasfe.even-better-toml",
+        "d-biehl.robotcode",
+        "shardulm94.trailing-spaces"
     ]
 }

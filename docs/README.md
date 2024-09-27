@@ -55,9 +55,9 @@ Now that poetry is set up, the project's Python dependencies can be installed:
 poetry install
 ```
 
-### Optional (recommended): VS Code user settings and launch configuration
-In the repo there is a `.vscode` folder with in it 2 `example` files.
-Copy both these files and rename them to `launch.json` and `settings.json` to have a
+### Optional (recommended): VS Code user settings
+In the repo there is a `.vscode` folder with in it an `example.settings.json` file.
+Copy this file and rename it to `settings.json` to have a
 default set of launch / debug configurations and base settings.
 
 ## Running the API server using poetry and invoke

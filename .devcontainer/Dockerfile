@@ -1,4 +1,4 @@
-FROM python:3.12-slim-bookworm
+FROM python:3.13-slim-bookworm
 
 # Update the certificates
 RUN apt-get update && \
@@ -27,14 +27,18 @@ RUN	apt-get clean && \
 
 RUN	python -m pip install --upgrade pip
 
+# Install and configure poetry
 ENV POETRY_HOME="/opt/poetry"
 ENV PATH="$PATH:$POETRY_HOME/bin"
 RUN curl -sSL https://install.python-poetry.org | python3 -
+RUN poetry config virtualenvs.in-project true
+RUN poetry self update
 
-# Configure poetry to not create virtual environments.
-# This is done to force package installation to the global Python install so that users
-# other than the Docker root user have access to the installed packages.
-RUN poetry config virtualenvs.create false
+# Install and configure uv
+ADD https://astral.sh/uv/install.sh /uv-installer.sh
+RUN sh /uv-installer.sh && rm /uv-installer.sh
+ENV PATH="/root/.local/bin/:$PATH"
+ENV UV_LINK_MODE=copy
 
 EXPOSE 8888
 ENTRYPOINT ["/bin/sh"]

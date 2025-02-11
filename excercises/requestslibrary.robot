@@ -21,7 +21,7 @@ Post Portrait
     ${author_id}=    Set Variable    ${authors_list[0]}[id]
 
     ${portrait}=    Get File For Streaming Upload    path=${ROOT}/excercises/rf_logo.png
-    ${files}=   Create Dictionary   uploaded_file=${portrait}   type=image/png
+    ${files}=    Create Dictionary    uploaded_file=${portrait}    type=image/png
     ${query_params}=    Create Dictionary    replace=${TRUE}
     ${response}=    POST
     ...    url=${HOST}/authors/${author_id}/upload_portrait

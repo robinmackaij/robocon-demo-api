@@ -1,13 +1,14 @@
 *** Settings ***
 Resource            variables.resource
 Library             OpenApiDriver
-...                    source=${HOST}/openapi.json
-...                    origin=${HOST}
-...                    ignored_paths=${IGNORED_PATHS}
-...                    response_validation=DISABLED
-...                    mappings_path=${ROOT}/excercises/mappings.py
-...                    extra_headers=${EXTRA_HEADERS}
-Test Template        Validate Using Test Endpoint Keyword
+...                     source=${HOST}/openapi.json
+...                     origin=${HOST}
+...                     ignored_paths=${IGNORED_PATHS}
+...                     response_validation=DISABLED
+...                     mappings_path=${ROOT}/excercises/mappings.py
+...                     extra_headers=${EXTRA_HEADERS}
+
+Test Template       Validate Using Test Endpoint Keyword
 
 
 *** Test Cases ***

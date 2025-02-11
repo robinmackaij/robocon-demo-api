@@ -1,10 +1,10 @@
 *** Settings ***
-Resource            variables.resource
-Library             Collections
-Library             String
-Library             OpenApiLibCore
-...                    source=${HOST}/openapi.json
-...                    origin=${HOST}
+Resource    variables.resource
+Library     Collections
+Library     String
+Library     OpenApiLibCore
+...             source=${HOST}/openapi.json
+...             origin=${HOST}
 
 
 *** Test Cases ***

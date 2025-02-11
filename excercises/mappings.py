@@ -11,7 +11,6 @@ from OpenApiLibCore import (
     UniquePropertyValueConstraint,
 )
 
-
 ID_MAPPING = {}
 
 
